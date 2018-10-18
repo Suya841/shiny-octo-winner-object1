@@ -1,0 +1,227 @@
+.header
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: #FFFFFF;
+    z-index: 100;
+    padding-left: 60px;
+    padding-right: 64px;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.header.scrolled
+{
+    height: 80px;
+}
+.header_inner
+{
+    width: 100%;
+    height: 100%;
+}
+
+/*********************************
+3.1 Header - Logo
+*********************************/
+
+.logo a
+{
+    font-family: 'Lucida', serif;
+    font-size: 30px;
+    color: #2f2f2f;
+}
+
+/*********************************
+3.2 Header - Main Navigation
+*********************************/
+
+.main_nav
+{
+    padding-left: 252px;
+    -webkit-transform: translateY(4px);
+    -moz-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    -o-transform: translateY(4px);
+    transform: translateY(4px);
+}
+.main_nav ul li
+{
+    display: inline-block;
+    margin-right: 50px;
+}
+.main_nav ul li:last-child
+{
+    margin-right: 0;
+}
+.main_nav ul li a
+{
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #2f2f2f;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.main_nav ul li a:hover
+{
+    color: #937c6f;
+}
+
+/*********************************
+3.3 Header - Search
+*********************************/
+
+.search
+{
+    display: inline-block;
+    width: 400px;
+    -webkit-transform: translateY(2px);
+    -moz-transform: translateY(2px);
+    -ms-transform: translateY(2px);
+    -o-transform: translateY(2px);
+    transform: translateY(2px);
+}
+.search_input
+{
+    width: 100%;
+    height: 43px;
+    background: #f9f5f5;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+}
+.search_button
+{
+    position: absolute;
+    top: 45%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 10px;
+    width: 19px;
+    height: 19px;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+.search_button:focus
+{
+    outline: none !important;
+}
+.search_button img
+{
+    max-width: 100%;
+}
+
+/*********************************
+3.4 Header - Shopping
+*********************************/
+
+.shopping
+{
+    display: inline-block;
+    margin-left: 111px;
+    padding-right: 161px;
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    -o-transform: translateY(-2px);
+    transform: translateY(-2px);
+}
+.shopping a
+{
+    display: inline-block;
+    margin-right: 10px;
+}
+.shopping a:last-child
+{
+    margin-right: 0;
+}
+.cart_num_container,
+.star_num_container
+{
+    position: absolute;
+    top: 13px;
+    left: -5px;
+    width: 15px;
+    height: 15px;
+    background: #937c6f;
+    border-radius: 50%;
+}
+.cart_num_inner,
+.star_num_inner
+{
+    width: 100%;
+    height: 100%;
+}
+.cart_num,
+.star_num
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 9px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+.star img
+{
+    width: 20px;
+    height: 20px;
+}
+.avatar img
+{
+    width: 20px;
+    height: 20px;
+}
+
+/*********************************
+3.5 Header - Burger
+*********************************/
+
+.burger_container
+{
+    position: absolute;
+    top: calc(50% + 4px);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 0;
+    width: 22px;
+    height: 16px;
+    cursor: pointer;
+}
+.burger_container div
+{
+    width: 100%;
+    height: 2px;
+    background: #232323;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+    pointer-events: none;
+}
+.burger_container:hover div
+{
+    background: #937c6f;
+}

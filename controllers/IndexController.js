@@ -6,7 +6,14 @@ let flag;
 
 exports.index = function(req,res){
 
-    if((req.session.sign&&flag==2) || flag==2){
+    var checkEmail = req.cookies.mail;
+//首先判断是否为admin用户 如果是跳转管理页面
+    if(req.session.sign&&flag==2&&checkEmail=='admin'){
+        res.render('categories',{state:2});
+        flag = 2;
+        return;
+
+    }else if((req.session.sign&&flag==2)||flag==2){
         res.render('index',{state:2});
         flag = 2;
         return;
@@ -27,7 +34,7 @@ exports.logOut = function(req,res){
 exports.cart = function(req,res){
 
 
-    console.log('index session.sign====='+req.session.sign)
+    // console.log('index session.sign====='+req.session.sign)
 
     if( flag == 2){
         res.render('cart',{state:2});
@@ -44,10 +51,10 @@ exports.cart = function(req,res){
 exports.categories = function(req,res){
 
 
-    console.log('index session.sign====='+req.session.sign)
+    // console.log('index session.sign====='+req.session.sign)
 
     if(flag == 2){
-        console.log(flag);
+        // console.log(flag);
         res.render('categories',{state:2});
         flag = 2;
         return;
@@ -62,7 +69,7 @@ exports.checkout = function(req,res){
 
 
     if(flag == 2){
-        console.log(flag);
+        // console.log(flag);
         flag = 2;
         res.render('checkout',{state:2});
         return;
@@ -77,7 +84,7 @@ exports.contact = function(req,res){
 
 
     if(flag == 2){
-        console.log(flag);
+        // console.log(flag);
         res.render('contact',{state:2});
         flag = 2;
         return;
@@ -92,7 +99,7 @@ exports.product = function(req,res){
 
 
     if(flag == 2){
-        console.log(flag);
+        // console.log(flag);
         res.render('product',{state:2});
         flag = 2;
         return;
@@ -118,6 +125,7 @@ exports.login=function(req,res){
     //1,解析客户端提交的数据
     var email  = req.body.email;
     var password  = req.body.password;
+
     //2,验证用户是否合法
     //(1)引入userService
     var UserService = require('../Service/UserService');
@@ -131,13 +139,17 @@ exports.login=function(req,res){
         if(result.state==2){
             req.session.sign=true;
             flag=2;
-            res.cookie('mail',result.mail,{maxAge:10*1000});
-            res.cookie('password',result.password,{maxAge:10*1000});
-            var data = JSON.stringify(result);
-            res.end(data);
+            res.cookie('mail',result.mail,{maxAge:60*60*1000});
+            res.cookie('password',result.password,{maxAge:60*60*1000});
+            // var data = JSON.stringify(result);
+            // res.end(data);
+            // res.end(result.msg);
         }
-        console.log('login session.sign====='+req.session.sign)
-        console.log('login flag====='+flag)
+        // console.log(result);
+           var data = JSON.stringify(result);
+           res.end(data);
+        // console.log('login session.sign====='+req.session.sign)
+        // console.log('login flag====='+flag)
         userService.end();
 
     },0);
@@ -152,17 +164,36 @@ exports.register = function(req,res) {
     var user = req.body.user;
     var password = req.body.password;
     var ConfirmPassword = req.body.ConfirmPassword;
-    //2,向业务层要数据
-    //(1),引入UserService模块
-    var UserService = require('../service/UserService');
-    //(2),创建UserService对象
-    var userService = new UserService();
-    userService.init();
-    //(3),插入用户
-    userService.insert(email,user,password,ConfirmPassword,function(result) {
-        //3,把数据传给view
-        res.end(JSON.stringify(result));
-        userService.end();
-    });
 
+    var emailCheck = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    var userCheck =  /^[A-Za-z]+$/;
+    var passwordCheck = /^[\w]{6,14}$/;
+
+
+
+    if ( emailCheck.test(email) && userCheck.test(user) && passwordCheck.test(password)){
+
+        //2,向业务层要数据
+        //(1),引入UserService模块
+        var UserService = require('../service/UserService');
+        //(2),创建UserService对象
+        var userService = new UserService();
+        userService.init();
+        //(3),插入用户
+        userService.insert(email,user,password,ConfirmPassword,function(result) {
+            //3,把数据传给view
+            // res.end(JSON.stringify(result));
+            // userService.end();
+            res.end(JSON.stringify(result));
+            console.log('reg rusult=====');
+            console.log(JSON.stringify(result))
+        });
+
+
+        userService.end();
+
+
+    } else{
+        console.log('数据格式错误');
+    }
 }

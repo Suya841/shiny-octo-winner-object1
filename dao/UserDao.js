@@ -38,8 +38,8 @@ function UserDao() {
         });
     }
 
-        //数据插入
-        this.insertUser = function (email, user, password, call) {
+    //数据插入
+    this.insertUser = function (email, user, password, call) {
             //(1)执行插入
             var sqlInsert = 'INSERT INTO user(email,user,password) VALUES(?,?,?)';
             var paramsInsert = [email, user, password];
@@ -49,8 +49,8 @@ function UserDao() {
                 console.log('[INSERT ERROR] - ', err.message);
                 return;
                     }
-            console.log('dao insert=====' + result);
-                console.log(result);
+            // console.log('dao insert=====' + result);
+            //     console.log(result);
             call(result);
         });
             //5,连接结束

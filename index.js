@@ -23,7 +23,7 @@ var session = require('express-session');
 app.use(session({
     secret: '12345',
     name: 'express_11_cookie',
-    cookie: {maxAge: 80*1000}
+    cookie: {maxAge: 60*1000}
 }));
 
 //引入cookie模块
